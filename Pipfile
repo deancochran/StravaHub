@@ -5,11 +5,23 @@ name = "pypi"
 
 [packages]
 django = "*"
+djangorestframework = "*"
+psycopg2-binary = "*"
+django-allauth = "*"
 
 [dev-packages]
+pytest = "*"
+pytest-django = "*"
+environ = "*"
 
 [requires]
 python_version = "3.9"
 
 [scripts]
 server = "python manage.py runserver"
+makemigrations = "python manage.py makemigrations"
+migrate = "python manage.py migrate"
+startapp = "python manage.py startapp"
+createsuperuser = "python manage.py createsuperuser"
+shell = "python manage.py shell"
+
