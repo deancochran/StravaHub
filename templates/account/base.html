@@ -9,6 +9,7 @@
   <body>
     {% block body %}
 
+    {% comment %} 
     {% if messages %}
     <div>
       <strong>Messages:</strong>
@@ -18,17 +19,18 @@
         {% endfor %}
       </ul>
     </div>
-    {% endif %}
+    {% endif %} 
+    {% endcomment %}
 
     <div>
       <strong>Menu:</strong>
       <ul>
         {% if user.is_authenticated %}
-        <li><a href="{% url 'account_email' %}">Change E-mail</a></li>
+        {% comment %} <li><a href="{% url 'account_email' %}">Change E-mail</a></li> {% endcomment %}
         <li><a href="{% url 'account_logout' %}">Sign Out</a></li>
         {% else %}
         <li><a href="{% url 'account_login' %}">Sign In</a></li>
-        <li><a href="{% url 'account_signup' %}">Sign Up</a></li>
+        {% comment %} <li><a href="{% url 'account_signup' %}">Sign Up</a></li> {% endcomment %}
         {% endif %}
       </ul>
     </div>

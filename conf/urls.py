@@ -21,5 +21,5 @@ urlpatterns = [
     path('', index_view), # index
     path('admin/', admin.site.urls), #admin/staff
     path('accounts/', include('allauth.urls')),
-    path('blog/', include('blog.urls')),
+    path('blog/', include('blog.urls')),    
     ]

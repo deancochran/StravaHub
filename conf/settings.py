@@ -19,21 +19,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-e3d4#ict+)=w74=%z6060pyx%trjcz097vf9l7wf(m4d+f1m*!'
-
-# SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = str(os.environ.get('DEBUG'))
 
-# SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = str(os.environ.get('DEBUG')) == "1" # 1 == True
-
-# ENV_ALLOWED_HOST = os.environ.get('DJANGO_ALLOWED_HOST') or None
+ENV_ALLOWED_HOST = os.environ.get('DJANGO_ALLOWED_HOST') or None
 ALLOWED_HOSTS = []
-# if not DEBUG:
-#     ALLOWED_HOSTS += [os.environ.get('DJANGO_ALLOWED_HOST')]
+if not DEBUG:
+    ALLOWED_HOSTS += [os.environ.get('DJANGO_ALLOWED_HOST')]
 
 # Provider specific settings
 SOCIALACCOUNT_PROVIDERS = {
@@ -42,8 +36,8 @@ SOCIALACCOUNT_PROVIDERS = {
         # (``socialaccount`` app) containing the required client
         # credentials, or list them here:
         'APP': {
-            'client_id': '75469',
-            'secret': 'df9e2e2c9fc7455cdc75d528dfae9c9b3818ffa8',
+            'client_id': str(os.environ.get('CLIENT_ID')),
+            'secret': str(os.environ.get('CLIENT_SECRET')),
             'key': ''
         }
     }
@@ -71,10 +65,9 @@ INSTALLED_APPS = [
 ]
 
 SITE_ID = 1
-
-DOMAIN = '127.0.0.1:8000'
+DOMAIN = str(os.environ.get('DOMAIN'))
 # LOGIN_REDIRECT_URL = f"http://www.strava.com/oauth/authorize?client_id={str(SOCIALACCOUNT_PROVIDERS['strava']['APP']['client_id'])}&response_type=code&redirect_uri=http://{DOMAIN}/exchange_token&approval_prompt=force&scope=read"
-LOGIN_REDIRECT_URL = f"http://127.0.0.1:8000/"
+LOGIN_REDIRECT_URL = 'http://'+str(os.environ.get('DOMAIN'))
 
 
 MIDDLEWARE = [
@@ -115,11 +108,11 @@ DATABASES = {
 
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'deancochran',
-        'USER': 'deancochran',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': os.environ.get('DATABASE_NAME'),
+        'USER': os.environ.get('DATABASE_USER'),
+        'PASSWORD': os.environ.get('DATABASE_PASSWORD'),
+        'HOST': os.environ.get('DATABASE_HOST'),
+        'PORT': os.environ.get('DATABASE_PORT'),
     }
 }
 

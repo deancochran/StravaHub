@@ -8,6 +8,8 @@ django = "*"
 djangorestframework = "*"
 psycopg2-binary = "*"
 django-allauth = "*"
+requests = "*"
+django-dotenv = "*"
 
 [dev-packages]
 pytest = "*"
@@ -24,4 +26,3 @@ migrate = "python manage.py migrate"
 startapp = "python manage.py startapp"
 createsuperuser = "python manage.py createsuperuser"
 shell = "python manage.py shell"
-
